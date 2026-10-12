@@ -1,0 +1,6 @@
+/target/
+ds-data/
+ds-media/
+*.log
+.env
+.DS_Store

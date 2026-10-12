@@ -1,0 +1,26 @@
+[workspace]
+members = [
+  "crates/ds-core",
+  "crates/ds-auth",
+  "crates/ds-chat",
+  "crates/ds-store",
+  "crates/ds-gateway",
+]
+resolver = "2"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
+
+[workspace.dependencies]
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "1"
+tracing = "0.1"
+anyhow = "1"
+async-trait = "0.1"
+base64 = "0.22"

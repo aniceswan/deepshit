@@ -1,0 +1,24 @@
+[Unit]
+Description=deepshit (DeepSeek web gateway)
+After=network.target
+
+[Service]
+Type=simple
+User=ds
+Group=ds
+Environment=DATA_DIR=/var/lib/deepshit/ds-data
+Environment=MEDIA_DIR=/var/lib/deepshit/ds-media
+Environment=LISTEN=127.0.0.1:3000
+Environment=SESSION_ID=utama
+Environment=RUST_LOG=info
+# Isi API_TOKEN di /etc/deepshit.env untuk produksi, lalu uncomment baris di bawah:
+# EnvironmentFile=/etc/deepshit.env
+ExecStart=/usr/local/bin/deepshit --data-dir ${DATA_DIR} --media-dir ${MEDIA_DIR} --listen ${LISTEN} --session-id ${SESSION_ID} run
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/deepshit
+
+[Install]
+WantedBy=multi-user.target
